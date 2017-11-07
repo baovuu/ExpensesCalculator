@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <title>Expenses Calculator</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <style>
+        body {
+            text-align: center;
+            background-color: #5e96f2;
+        }
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        table td{
+            text-align: left;
+            padding: 5px 50px 5px 50px;
+        }
+        
+    
+    </style>
+
+    
+</head>
+
+<body>
+    <div>
+        <h1>Expenses Calculator</h1>
+        <p><strong>Please enter your annual income and monthly expenses</strong></p>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>Annual Income</td>
+                <td><input id="mainIncome" type="text"/></td>
+            </tr>
+            <tr>
+                    <td>Annual Second Income</td>
+                    <td><input id="secondIncome" /></td>
+            </tr>
+            <tr>
+                    <td>Monthly Car Payment</td>
+                    <td><input id="carPayment" /></td>
+            </tr>
+            <tr>
+                    <td>Monthly Student Loan</td>
+                    <td><input id="studentLoan" /></td>
+            </tr>
+            <tr>
+                    <td>Monthly Credit Cards</td>
+                    <td><input id="creditCard" /></td>
+            </tr>     
+        </table>
+    </div>
+
+    <div>
+        <button id="submit">Submit</button>
+    </div>
+    <br />
+    <div id="monthlyResult">
+        <table>
+            <thead>Monthly</thead>
+            <tr>
+                <td>Main Income</td>
+                <td id="mainIncomeMonthlyResult"></td>
+            </tr>
+            <tr>
+                    <td>Second Income</td>
+                    <td id="secondIncomeMonthlyResult"></td>
+            </tr>
+            <tr>
+                    <td>Car Payment</td>
+                    <td id="carPaymentMonthlyResult"></td>
+            </tr>
+            <tr>
+                    <td>Student Loan</td>
+                    <td id="studentLoanMonthlyResult"></td>
+            </tr>
+            <tr>
+                    <td>Credit Cards</td>
+                    <td id="creditCardMonthlyResult"></td>
+            </tr>
+            <tr>
+                <td>Total Remainder</td>
+                <td id="remainderMonthlyResult"></td>
+            </tr>      
+        </table>
+    </div>
+    <br />
+    <div id="annualResult">
+        <table>
+            <thead>Annualy</thead>
+            <tr>
+                <td>Main Income</td>
+                <td id="mainIncomeAnnualResult"></td>
+            </tr>
+            <tr>
+                    <td>Second Income</td>
+                    <td id="secondIncomeAnnualResult"></td>
+            </tr>
+            <tr>
+                    <td>Car Payment</td>
+                    <td id="carPaymentAnnualResult"></td>
+            </tr>
+            <tr>
+                    <td>Student Loan</td>
+                    <td id="studentLoanAnnualResult"></td>
+            </tr>
+            <tr>
+                    <td>Credit Cards</td>
+                    <td id="creditCardAnnualResult"></td>
+            </tr>
+            <tr>
+                <td>Total Remainder</td>
+                <td id="remainderAnnualResult"></td>
+            </tr>      
+        </table>
+    </div>
+    
+    <script>
+        document.getElementById("monthlyResult").style.display = "none";
+        document.getElementById("annualResult").style.display = "none";
+        document.getElementById("submit").onclick = function() {
+            var mainAnnualIncome = document.getElementById("mainIncome").value;
+            var secondAnnualIncome = document.getElementById("secondIncome").value;
+            var carMonthlyPayment = document.getElementById("carPayment").value;
+            var studentLoanMonthly = document.getElementById("studentLoan").value;
+            var creditCardMonthly = document.getElementById("creditCard").value;
+
+            var mainMonthlyIncome = document.getElementById("mainIncome").value / 13;
+            var secondMonthlyIncome = document.getElementById("secondIncome").value / 13;
+            var carAnnualPayment = document.getElementById("carPayment").value * 13;
+            var studentLoanAnnual = document.getElementById("studentLoan").value * 13;
+            var creditCardAnnual = document.getElementById("creditCard").value * 13;
+
+            var AnnualTotalRemainder = +mainAnnualIncome + +secondAnnualIncome - +carAnnualPayment - +studentLoanAnnual - +creditCardAnnual;
+            var MonthlyTotalRemainder = +mainMonthlyIncome + +secondMonthlyIncome - +carMonthlyPayment - +studentLoanMonthly - +creditCardMonthly;
+            
+            AnnualTotalRemainder = Math.ceil(AnnualTotalRemainder);
+            MonthlyTotalRemainder = Math.ceil(MonthlyTotalRemainder);
+            mainMonthlyIncome = Math.ceil(mainMonthlyIncome);
+            secondMonthlyIncome = Math.ceil(secondMonthlyIncome);
+            carMonthlyPayment = Math.ceil(carMonthlyPayment);
+            studentLoanMonthly = Math.ceil(studentLoanMonthly);
+            creditCardMonthly - Math.ceil(creditCardMonthly);
+            
+            //Monthly
+            document.getElementById("mainIncomeMonthlyResult").innerHTML = mainMonthlyIncome;
+            document.getElementById("secondIncomeMonthlyResult").innerHTML = secondMonthlyIncome;
+            document.getElementById("carPaymentMonthlyResult").innerHTML = carMonthlyPayment;
+            document.getElementById("studentLoanMonthlyResult").innerHTML = studentLoanMonthly;
+            document.getElementById("creditCardMonthlyResult").innerHTML = creditCardMonthly;
+            document.getElementById("remainderMonthlyResult").innerHTML = MonthlyTotalRemainder;
+
+            //Annualy
+            document.getElementById("mainIncomeAnnualResult").innerHTML = mainAnnualIncome;
+            document.getElementById("secondIncomeAnnualResult").innerHTML = secondAnnualIncome;
+            document.getElementById("carPaymentAnnualResult").innerHTML = carAnnualPayment;
+            document.getElementById("studentLoanAnnualResult").innerHTML = studentLoanAnnual;
+            document.getElementById("creditCardAnnualResult").innerHTML = creditCardAnnual;
+            document.getElementById("remainderAnnualResult").innerHTML = AnnualTotalRemainder;
+            
+            document.getElementById("monthlyResult").style.display = "block";
+            document.getElementById("annualResult").style.display = "block";
+            
+        }
+    </script>
+    
+</body>
+</html>
